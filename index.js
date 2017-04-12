@@ -21,12 +21,13 @@ app.get('/', function (req, res) {
    res.sendFile( __dirname + "/views/index.html" );
 })
 
-app.get('/', function(req ,res) {
+app.get('/search', function(req ,res) {
+console.log(req);
 var foodSubGroup = req.query.foodGroup;
 var mass = req.query.mass;
 mass = mass /100;
 
-connection.query('SELECT avg(unit_price_g_avg) AS price FROM price WHERE fsg_id=' + foodGroup, function(err, rows) {
+connection.query('SELECT avg(unit_price_g_avg) AS price FROM price WHERE fsg_id=' + foodSubGroup, function(err, rows) {
 	if (err)
 		throw err;
 	res.send(rows[0]);

@@ -142,13 +142,15 @@
             {
               var imgHolder = "#pic" + i;
               $(imgHolder).attr("src", "http://kingofwallpapers.com/blank/blank-003.jpg");
-            }
+            } 
           }
-        };
-      select: function() {
-          var db_index = fooditems.indexOf(this.value) + 1;
+        },  
+      select: function(event, ui) {
+          var db_index = fooditems.indexOf(ui.item.label) + 1;
           $("#foodGroup").val(db_index);
-      };
+          $("#foodGroup").text(db_index);
+          console.log($("#foodGroup").val())
+      }
     });
   } );
 
@@ -157,11 +159,12 @@
 <body>
  
 <div id="serachbox">
-  <label for="tags">Food: </label>
-  <input id="tags" >
-  <br>
-  <label>Grams: </label>
-  <input>
+ <form action = "/search" method = "GET">
+         Food Group: <input type = "text" id="tags"> <br>
+         Mass in grams: <input type = "text" name = "mass">
+         <input type="hidden" id="foodGroup" name="foodGroup" style="visibility:hidden"></input>
+         <input type = "submit" value = "Submit">
+      </form>
 </div>
  
 
@@ -181,9 +184,7 @@
   </tr>
 </table>
 <br>
-<button id="submit" > Submit </button>
 
-<label id="lolz" visible="false"> </label>
 
 </body>
 

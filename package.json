@@ -1,0 +1,17 @@
+{
+  "name": "FoodWasteTracker",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodejs index.js"
+  },
+  "author": "DSengar",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "express": "~4.15.2",
+    "body-parser": "~1.17.1",
+    "mysql": "~2.13.0"
+  }
+}

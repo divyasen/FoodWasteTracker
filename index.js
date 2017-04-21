@@ -22,7 +22,6 @@ app.get('/', function (req, res) {
 })
 
 app.get('/search', function(req ,res) {
-console.log(req);
 var foodSubGroup = req.query.foodGroup;
 var mass = req.query.mass;
 mass = mass /100;
@@ -30,10 +29,19 @@ mass = mass /100;
 connection.query('SELECT avg(unit_price_g_avg) AS price FROM price WHERE fsg_id=' + foodSubGroup, function(err, rows) {
 	if (err)
 		throw err;
-	res.send(rows[0]);
+	res.render(__dirname + "/views/stat",{
+		rows[0],
+		
+	})
 })
 
 })
+app.get('/test', function(req, res) {
+   res.sendFile(__dirname + "/views/stat.html");
+
+})
+
+
 
 app.listen(3000, function() {
   console.log('listening on 3000')

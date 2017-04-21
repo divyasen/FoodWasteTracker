@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
   user     : 'root',
   password : 'root',
   database : 'food_waste_tracker',
-  port : '3307'
+  port : '3306'
 });
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -27,12 +27,16 @@ var mass = req.query.mass;
 mass = mass /100;
 
 connection.query('SELECT avg(unit_price_g_avg) AS price FROM price WHERE fsg_id=' + foodSubGroup, function(err, rows) {
-	if (err)
+	if (err){
 		throw err;
-	res.render(__dirname + "/views/stat",{
-		rows[0],
+	}
+
+	res.send(rows[0]);
+
+/*	res.render(__dirname + "/views/stat",
+		rows[0]
 		
-	})
+	)*/
 })
 
 })

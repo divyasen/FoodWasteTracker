@@ -15,6 +15,8 @@
 
     var added={};
 
+    var added_json={};
+
     var selected = false; 
 
     $("#pic0").click(function(){
@@ -250,18 +252,20 @@
         $("#added").text("");
         selected = false;
         added[$( "#tags" ).val()] = $( "#grams" ).val();
+        var db_index = fooditems.indexOf($("#tags").val()) + 1;
+        added_json[db_index] = $( "#grams" ).val();
 
         Object.keys(added).forEach(function(key) {
           value = added[key];
           $("#added").append(key + " : " + value + "g<br>");
 
         });
-        $("#foodGroup").val(JSON.stringify(added));
-        $("#foodGroup").text(JSON.stringify(added));
+        $("#foodGroup").val(JSON.stringify(added_json));
+        $("#foodGroup").text(JSON.stringify(added_json));
       }
       else
       {
-        alert("Please select a valid category first");  
+        alert("Please select a valid category first");
       }
     });
 

@@ -4,8 +4,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Autocomplete - Default functionality</title>
+  <title>FoodWasteTracker</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -13,6 +12,43 @@
   <script>
 
   $( function() {
+
+    var added={};
+
+    var selected = false; 
+
+    $("#pic0").click(function(){
+      $("#tags").val(image_map[$("#pic0").attr('src')]);
+      selected = true;
+    });
+    $("#pic1").click(function(){
+      $("#tags").val(image_map[$("#pic1").attr('src')]);
+      selected = true;
+    });
+    $("#pic2").click(function(){
+      $("#tags").val(image_map[$("#pic2").attr('src')]);
+      selected = true;
+    });
+    $("#pic3").click(function(){
+      $("#tags").val(image_map[$("#pic3").attr('src')]);
+      selected = true;
+    });
+    $("#pic4").click(function(){
+      $("#tags").val(image_map[$("#pic4").attr('src')]);
+      selected = true;
+    });
+    $("#pic5").click(function(){
+      $("#tags").val(image_map[$("#pic5").attr('src')]);
+      selected = true;
+    });
+    $("#pic6").click(function(){
+      $("#tags").val(image_map[$("#pic6").attr('src')]);
+      selected = true;
+    });
+    $("#pic7").click(function(){
+      $("#tags").val(image_map[$("#pic7").attr('src')]);
+      selected = true;
+    });
 
     var fooditems = [
       "Fresh/Frozen fruit",
@@ -124,6 +160,61 @@
       "Ready to eat deli items (hot and cold)":"http://finefooddude.com/wp-content/uploads/2014/08/IMG_4226.jpg"
     };
 
+    var image_map = {
+      "https://www.azurestandard.com/healthy-living/wp-content/uploads/2015/08/frozen-fruit-raspberries-blackberries-e1440786210865.jpg":"Fresh/Frozen fruit",
+      "http://img.foodnetwork.com/FOOD/2013/10/03/HE_canned-fruit-thinkstock_s4x3_lg.jpg":"Canned Fruit",
+      "http://delitefulmeals.com/wp-content/uploads/2016/04/juice.jpg":"Fruit Juice",
+      "http://simplegreensmoothies.com/wp-content/uploads/2015/06/LeafyGreens_560Logo.jpg":"Fresh/Frozen dark green vegetables",
+      "http://canigivemybaby.com/wp-content/uploads/2011/11/can-i-give-my-baby-canned-vegetables.jpg":"Canned dark green vegetables",
+      "http://www.almanac.com/sites/default/files/styles/primary_image_in_article/public/images/carrots.jpg?itok=_nIMWR5y":"Fresh/Frozen orange vegetables",
+      "https://www.delmonte.com/sites/default/files/carsl14.5oz_16299_cweb.png":"Canned orange vegetables",
+      "http://farmcareltd.com/wp-content/themes/farmcare/_assets/img/what-we-do/potato.png":"Fresh/Frozen starchy vegetables",
+      "http://minutegrocery.com/ibuygroceries/images/sliced_potatoes.jpg":"Canned starchy vegetables",
+      "http://masalamommas.com/wp-content/uploads/2016/06/vegetables-1403046-1-400x267.jpg":"Fresh/Frozen select nutrient vegetables",
+      "https://cimg3.ibsrv.net/cimg/www.fitday.com/693x350_100-1/975/canned-20vegetables_000021349948_Small-106975.jpg":"Canned select nutrients",
+      "http://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/12_powerhouse_vegetables_slideshow/intro_cream_of_crop.jpg":"Fresh/Frozen other vegetables",
+      "http://arkangelfarm.typepad.com/.a/6a012876705738970c0133f4ab9c2e970b-pi":"Canned other vegetables",
+      "http://www.rd.com/wp-content/uploads/sites/2/2014/02/05-beans-fight-cancer-sl.jpg":"Frozen/Dried Legumes",
+      "http://www.bushbeans.com/sites/default/files/product-shelf/product-landing-hero-culinary_0-2.png":"Canned Legumes",
+      "http://www.thefresh20.com/wp-content/uploads/2013/11/pasta.jpg":"Whole grain bread, rolls, rice, pasta, cereal",
+      "http://www.crumblycookie.net/wp-content/uploads/2010/03/Copy-of-IMG_4316.jpg":"Whole grain flour and mixes",
+      "http://ghk.h-cdn.co/assets/cm/15/11/54fed84c988c3-whole-grain-waffles-365-xl.jpg":"Whole grain frozen/ready to cook",
+      "http://files.recipetips.com/kitchen/images/refimages/bread/types/Italian_bread_500.jpg":"other bread, rolls, rice, pasta, cereal",
+      "http://www.onepagenews.com/wp-content/uploads/2011/11/BEC1FAD6A91F8A3A53DE87A9CF0C3-300x199.jpg":"other flour and mixes",
+      "https://www.pillsbury.com/-/media/Temp/grands-buttery-crescents.jpg?h=282&la=en&mh=320&mw=500&w=500":"other frozen/ready to cook grains",
+      "http://gomart.pk/image/data/incoming/images/lacnor-low-fat-milk-1ltr-gomart-pakistan-3209.jpg":"Low fat milk",
+      "https://2rdnmg1qbg403gumla1v9i2h-wpengine.netdna-ssl.com/wp-content/uploads/sites/3/2013/02/Various-cheeses.jpg":"Low fat cheese",
+      "https://www.karouncheese.com/images/products/65_tn330_KAROUN-yogurt-lowfat-2.jpg":"Low fat yogurt & other dairy",
+      "http://cdn2.stylecraze.com/wp-content/uploads/2016/06/Benefits-Of-Cow-Milk-According-To-Ayurveda.jpg":"Regular fat milk",
+      "http://www.eatwisconsincheese.com/EatWisconsinCheese/media/content/hero%20images/hero-cheese.png":"Regular fat cheese",
+      "http://www.finecooking.com/assets/uploads/posts/5417/ING-heavy-cream_sql.jpg":"Regular fat yogurt & other dairy",
+      "http://images.wisegeek.com/sliced-pork.jpg":"Fresh/frozen low fat meat",
+      "http://jbssa.com/images/our-business/beef/cutout-beef.jpg":"Fresh/frozen regular fat meat",
+      "http://c.shld.net/rpx/i/s/i/spin/10127449/prod_ec_1575300602??hei=64&wid=64&qlt=50":"Canned meat",
+      "http://2.bp.blogspot.com/-WTC-2QfGjiE/UdI1SPTQ4UI/AAAAAAAAAWY/DZJBG8M8xhU/s1042/Broiler+Poultry.jpg":"Fresh/frozen poultry",
+      "http://www.bumblebee.com/wp-content/uploads/products/bumble-bee-premium-chicken-breast-in-water.jpg?x78623":"Canned poultry",
+      "http://www.1zoom.me/big2/555/325559-svetik.jpg":"Fresh/frozen fish",
+      "https://lh4.googleusercontent.com/-Hq-WqWZ89pc/VN049gapEcI/AAAAAAAAiHA/QzkPeAqW34Y/w578-h497-no/file.jpg":"Canned fish",
+      "http://az616578.vo.msecnd.net/files/2016/05/16/635990176584155393-2085841053_nuts.jpg":"Raw nuts and seeds",
+      "https://www.bodybuilding.com/images/2016/june/is-peanut-butter-healthy-header-v2-830x467.jpg":"Processed nuts, seeds and nut butters",
+      "https://cdn.authoritynutrition.com/wp-content/uploads/2013/01/egg.jpg":"Eggs",
+      "http://www.medicalnewstoday.com/content/images/articles/266/266258/olive-oil-and-olives.jpg":"Oils",
+      "http://primalblissnutrition.com/wp-content/uploads/2013/01/butter1.jpg":"Solid fats",
+      "http://www.rd.com/wp-content/uploads/sites/2/2016/04/01-too-much-sugar-opener.jpg":"Raw sugars",
+      "http://cdn.phillymag.com/wp-content/uploads/sites/3/2016/06/soda-tax-philadelphia-940x540.jpg":"Non-alcoholic carbonated beverages",
+      "http://www.coca-colacompany.com/content/dam/journey/us/en/private/2010/01/hi-c-juice-box-bfff630a.jpg":"Non-carbonated caloric beverages",
+      "http://www.thevailvoice.com/wordpress/wp-content/uploads/2017/01/app-water-treatment-and-disinfection_Header_1.jpg":"Water",
+      "https://www-tc.pbs.org/food/files/2012/07/History-of-Ice-Cream-1.jpg":"Ice cream and frozen desserts",
+      "https://thumb1.shutterstock.com/display_pic_with_logo/2187368/196636937/stock-photo-a-collection-of-savory-and-sweet-baked-goods-on-an-isolated-white-background-196636937.jpg":"Baked good mixes",
+      "http://images.mdlzapps.com/NA/images/ocpimages/44000/large/03219CF.JPG":"Packaged sweets/baked goods",
+      "http://www.riverviewfarmersmarket.org/wp-content/uploads/2014/09/unnamed-2.jpg":"Bakery items, ready to eat",
+      "http://ghk.h-cdn.co/assets/cm/15/12/5508e9c45049f-0212-market-pantry-thin-cut-fries-xl.jpg":"Frozen entrees and sides",
+      "http://i.huffpost.com/gen/1010455/images/h-BEST-CANNED-CHICKEN-NOODLE-SOUP-640x362.jpg":"Canned soups, sauces, prepared foods",
+      "https://lazygirlvegan.files.wordpress.com/2015/05/feb.jpg":"Packaged snacks",
+      "http://www.hellawella.com/sites/hellawella.com/files/styles/default/public/field/image/Eats_FrozenFoodFeatured.jpg?itok=JXitt7Du":"Ready to cook meals and sides",
+      "http://finefooddude.com/wp-content/uploads/2014/08/IMG_4226.jpg":"Ready to eat deli items (hot and cold)"
+    };
+
     $( "#tags" ).autocomplete({
       source: function(request, response) {
           var results = $.ui.autocomplete.filter(fooditems, request.term);
@@ -145,13 +236,45 @@
           }
         },  
       select: function(event, ui) {
-          var db_index = fooditems.indexOf(ui.item.label) + 1;
-          $("#foodGroup").val(db_index);
-          $("#foodGroup").text(db_index);
-          console.log($("#foodGroup").val())
+          selected = true;
+          // var db_index = fooditems.indexOf(ui.item.label) + 1;
+          // $("#foodGroup").val(db_index);
+          // $("#foodGroup").text(db_index);
       }
     });
+
+    $("#add").click(function() {
+      // Do a check first off to make sure that that is a valid category
+      if(selected)
+      {
+        $("#added").text("");
+        selected = false;
+        added[$( "#tags" ).val()] = $( "#grams" ).val();
+
+        Object.keys(added).forEach(function(key) {
+          value = added[key];
+          $("#added").append(key + " : " + value + "g<br>");
+
+        });
+        $("#foodGroup").val(JSON.stringify(added));
+        $("#foodGroup").text(JSON.stringify(added));
+        alert($("#foodGroup").text());
+      }
+      else
+      {
+        alert("Please select a valid category first");  
+      }
+    });
+
+
+    // send the json via POST
+    $("#submit").click(function(){
+
+    });
+
   } );
+
+  
 
   </script>
 </head>
@@ -160,9 +283,11 @@
 <div id="serachbox">
  <form action = "/search" method = "GET">
          Food Group: <input type = "text" id="tags"> <br>
-         Mass in grams: <input type = "text" name = "mass">
+         Mass in grams: <input type = "text" name = "mass" id="grams">
          <input type="hidden" id="foodGroup" name="foodGroup" style="visibility:hidden"></input>
-         <input type = "submit" value = "Submit">
+         <br>
+         <button type="button" id="add" value="Add food"><br>
+         <input type="submit" value = "Submit">
       </form>
 </div>
  
@@ -170,19 +295,21 @@
 
 <table style="width:50%">
   <tr>
-    <td><img id="pic0" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></td>
-    <td><img id="pic1" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></td> 
-    <td><img id="pic2" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></td>
-    <td><img id="pic3" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></td>
+    <td><a href="javascript:;"><img class="foodpics" id="pic0" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></a></td>
+    <td><a href="javascript:;"><img class="foodpics" id="pic1" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></a></td> 
+    <td><a href="javascript:;"><img class="foodpics" id="pic2" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></a></td>
+    <td><a href="javascript:;"><img class="foodpics" id="pic3" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></a></td>
   </tr>
   <tr>
-    <td><img id="pic4" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></td>
-    <td><img id="pic5" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></td> 
-    <td><img id="pic6" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></td>
-    <td><img id="pic7" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></td>
+    <td><a href="javascript:;"><img class="foodpics" id="pic4" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></a></td>
+    <td><a href="javascript:;"><img class="foodpics" id="pic5" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></a></td> 
+    <td><a href="javascript:;"><img class="foodpics" id="pic6" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></a></td>
+    <td><a href="javascript:;"><img class="foodpics" id="pic7" src="http://kingofwallpapers.com/blank/blank-003.jpg" alt="" border=3 height=100 width=100></a></td>
   </tr>
 </table>
 <br>
+
+<p id="added" align="center"> </p>
 
 
 </body>

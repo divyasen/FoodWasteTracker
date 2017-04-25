@@ -8,13 +8,13 @@ var connection = mysql.createConnection({
   user     : 'root',
   password : 'root',
   database : 'food_waste_tracker',
-  port : '3306'
+  port : '3307'
 });
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use(express.static('public'));
 
-// connection.connect();
+connection.connect();
 
 
 
@@ -25,7 +25,8 @@ app.get('/', function (req, res) {
 app.get('/search', function(req ,res) {
 var foodSubGroup = JSON.parse(req.query.foodGroup);
 var fsgList = [];
-
+var mass = 0;
+var data = {};
 for( var ind in foodSubGroup){
 	console.log(ind);
 	fsgList.push(ind);
@@ -37,6 +38,23 @@ connection.query('SELECT fsg_id, avg(unit_price_g_avg) AS price FROM price GROUP
 		throw err;
 	}
 	console.log(rows);
+	for(var ind in fsgList){
+		mass += parseInt(ind)
+	}
+	mass *= 2.5;
+	data.day = mass;
+	mass *= 7;
+	data.week = mass;
+	mass *= 4.34524;
+	data.month = mass;
+	mass *= 12;
+	data.year = mass; 
+	data.price = 0;
+	for(var ind in rows){
+		var temp = rows[ind]	
+		data.price += temp["fsg_id"] 
+	
+	}
 	
 	res.render(__dirname + "/views/stat",
 		rows[0]

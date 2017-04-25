@@ -23,16 +23,21 @@ app.get('/', function (req, res) {
 })
 
 app.get('/search', function(req ,res) {
-var foodSubGroup = req.query.foodGroup;
-var mass = req.query.mass;
-mass = 2.7 * 7 * mass /100;
+var foodSubGroup = JSON.parse(req.query.foodGroup);
+var fsgList = [];
 
-connection.query('SELECT avg(unit_price_g_avg) AS price FROM price WHERE fsg_id=' + foodSubGroup, function(err, rows) {
+for( var ind in foodSubGroup){
+	console.log(ind);
+	fsgList.push(ind);
+}
+
+
+connection.query('SELECT fsg_id, avg(unit_price_g_avg) AS price FROM price GROUP BY fsg_id HAVING fsg_id IN (' + fsgList.toString() + ");", function(err, rows) {
 	if (err){
 		throw err;
 	}
-	console.log(rows[0].price);
-//	res.send(rows[0]);
+	console.log(rows);
+	
 	res.render(__dirname + "/views/stat",
 		rows[0]
 		

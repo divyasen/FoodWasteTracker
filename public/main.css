@@ -1,7 +1,7 @@
 /* Main styling*/
 
 body {
-	background: #292b35;
+    background: #292b35;
     font-size: 15px;
 }
 
@@ -40,6 +40,30 @@ body {
     height: 400px;
 }
 
+.icon-container {
+    padding-left: 40px;
+    margin: 20px 0px;
+}
+
+.icon {
+    margin-left: -40px;
+    opacity: 0;
+}
+
+.big-text {
+    font-size: 25px;
+}
+
+.foodpics {
+    height: 200px;
+    /*overflow: hidden;*/
+}
+
+.foodlist {
+    overflow-y: scroll;
+    height: 250px;
+}
+
 /* D3 */
 .axis text {
     font: 10px sans-serif;
@@ -62,6 +86,11 @@ body {
 
 .axis text {
     font-size: 15px;
+    font-weight: bold;
+}
+
+text.num {
+    font-size: 23px;
 }
 
 /* Override bootstrap */
@@ -76,5 +105,5 @@ body {
 .nav-tabs>li.active>a,
 .nav-tabs>li.active>a:focus,
 .nav-tabs>li.active>a:hover {
-	font-weight: bold;
+    font-weight: bold;
 }

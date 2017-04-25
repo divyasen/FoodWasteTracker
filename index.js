@@ -14,7 +14,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use(express.static('public'));
 
-connection.connect();
+// connection.connect();
 
 
 

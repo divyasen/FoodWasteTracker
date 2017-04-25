@@ -6,22 +6,50 @@
         wot_height = document.getElementById("wot").offsetHeight - margin.top - margin.bottom,
         BASE_DATA = {
             chicken_weight: 4,
+            banana_weight: 2.4,
+            burger_weight: 0.333,
+            human_amt: 5.46
         };
 
-    var data = [
-        {
-            'time': 'week',
-            'weight': 4
-        },
-        {
-            'time': 'month',
-            'weight': 16
-        },
-        {
-            'time': 'year',
-            'weight': 208
+    var data;
+
+    function set_text (d) {
+        $("#amount-text").text(d['day']);
+        $("#waste-year-amount-text").text(data[data.length - 1].weight);
+        $("#chicken-year-text").text(Math.round((data[data.length - 1].weight / BASE_DATA.chicken_weight)));
+        $("#banana-year-text").text(Math.round((data[data.length - 1].weight / BASE_DATA.banana_weight)));
+        $("#burger-year-text").text(Math.round((data[data.length - 1].weight / BASE_DATA.burger_weight)));
+        $("#money-text").text(d['money']);
+        $("#feed-text").text(Math.round((data[data.length - 1].weight / BASE_DATA.human_amt)));
+    }
+
+    function add_icons () {
+        // Prevent a ton of icons being displayed
+        var max;
+
+        max = Math.min((data[data.length - 1].weight / BASE_DATA.chicken_weight), 100);
+        for (var i = 0; i < max; i++) {
+            $("#chicken_icons").append("<img class='icon chicken' src='chicken.png'/>");
         }
-    ]
+
+        max = Math.min((data[data.length - 1].weight / BASE_DATA.banana_weight), 100);
+        for (var i = 0; i < max; i++) {
+            $("#banana_icons").append("<img class='icon banana' src='banana.png'/>");
+        }
+
+        max = Math.min((data[data.length - 1].weight / BASE_DATA.burger_weight), 100);
+        for (var i = 0; i < max; i++) {
+            $("#burger_icons").append("<img class='icon burger' src='burger.png'/>");
+        }
+    }
+
+    function fadein_icons (mDiv) {
+        $(mDiv).each(function (idx, el) {
+            $(el).animate({
+                opacity: 1,
+            }, Math.log(idx + 1) * 250);
+        });
+    }
 
     function resize_graphs () {
         // Resize WOT graph
@@ -55,6 +83,7 @@
         wotXAxis = d3.axisBottom()
             .scale(wotX)
             .tickSizeOuter(0)
+            .ticks(4)
         wot.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + wot_height + ")")
@@ -64,6 +93,7 @@
             .tickFormat("")
             .tickSize(-wot_height)
             .tickSizeOuter(0)
+            .ticks(4)
             .scale(wotX);
         wotGrid = wot.append("g")
             .attr("class", "grid")
@@ -98,8 +128,9 @@
 
         // Add text
         divs.append('text')
+            .attr("class", "num")
             .attr("x", 0)
-            .attr("y", function(d) { return wotY(d.time.toUpperCase()) + 6 + wotY.bandwidth() / 2; })
+            .attr("y", function(d) { return wotY(d.time.toUpperCase()) + 7 + wotY.bandwidth() / 2; })
             .attr("opacity", 0)
             .text(function(d) { return d.weight + " lbs"; })
             .transition()
@@ -108,5 +139,52 @@
                 .attr("opacity", 1)
                 .attr("x", function(d) { return wotX(d.weight) + 15; })
     }
-    build_wot();
+
+    function getData() {
+        var tempdata = {
+                'day': .571,
+                'week': 4,
+                'month': 16,
+                'year': 208,
+                'money': 544
+            };
+            
+        data = [
+            {
+                'time': 'week',
+                'weight': tempdata['week']
+            },
+            {
+                'time': 'month',
+                'weight': tempdata['month']
+            },
+            {
+                'time': 'year',
+                'weight': tempdata['year']
+            }
+        ];
+
+        build_wot();
+        set_text(tempdata);
+        add_icons();
+
+        $("#chicken_icons").waypoint(function () {
+            fadein_icons(".icon.chicken");
+        }, {
+            offset: '70%'
+        });
+
+        $("#banana_icons").waypoint(function () {
+            fadein_icons(".icon.banana");
+        }, {
+            offset: '70%'
+        });
+
+        $("#burger_icons").waypoint(function () {
+            fadein_icons(".icon.burger");
+        }, {
+            offset: '70%'
+        });
+    }
+    getData();
 })();

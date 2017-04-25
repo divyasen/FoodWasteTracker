@@ -1,7 +1,7 @@
 /* Main styling*/
 
 body {
-	background: #292b35;
+    background: #292b35;
     font-size: 15px;
 }
 
@@ -54,6 +54,16 @@ body {
     font-size: 25px;
 }
 
+.foodpics {
+    height: 200px;
+    /*overflow: hidden;*/
+}
+
+.foodlist {
+    overflow-y: scroll;
+    height: 250px;
+}
+
 /* D3 */
 .axis text {
     font: 10px sans-serif;
@@ -95,5 +105,5 @@ text.num {
 .nav-tabs>li.active>a,
 .nav-tabs>li.active>a:focus,
 .nav-tabs>li.active>a:hover {
-	font-weight: bold;
+    font-weight: bold;
 }

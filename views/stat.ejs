@@ -11,14 +11,15 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script type="text/javascript" src="ejs.js"></script>
 </head>
 <body>
     <div class="container" style="padding-top: 30px;background: #2f323d">
         <a class="logo" href="#"><img src="wastelogo.svg" alt="Foodwaster" width="250"></a>
         <ul class="nav nav-tabs">
             <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="#">Stats</a></li>
             <li role="presentation"><a href="#">About</a></li>
+            <li role="presentation"><a href="#">Sources</a></li>
         </ul>
 
         <!-- MAIN BODY -->
@@ -36,7 +37,7 @@
                     <div id="wot">
                         <svg id="wot_svg"></svg>
                     </div>
-                    <p class="arvo  text-center"><small>Food wasted (pounds)</small></p>
+                    <p class="arvo text-center"><small>Food wasted (pounds)</small></p>
                     <br>
                     <p>In one year you throw away over <strong id="waste-year-amount-text" class="big-text">N/A</strong> pounds of food! In other words, you throw away around...</p>
                     <p><strong id="chicken-year-text" class="big-text">N/A</strong> whole chickens or...</p>

@@ -2,18 +2,19 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 var bodyParser = require('body-parser');
+app.set('view engine', 'ejs');
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'root',
   database : 'food_waste_tracker',
-  port : '3307'
+  port : '3306'
 });
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use(express.static('public'));
 
-connection.connect();
+// connection.connect();
 
 
 
@@ -22,17 +23,27 @@ app.get('/', function (req, res) {
 })
 
 app.get('/search', function(req ,res) {
-var foodSubGroup = req.query.foodGroup;
-var mass = req.query.mass;
-mass = mass /100;
+var foodSubGroup = JSON.parse(req.query.foodGroup);
+var fsgList = [];
 
-connection.query('SELECT avg(unit_price_g_avg) AS price FROM price WHERE fsg_id=' + foodSubGroup, function(err, rows) {
-	if (err)
+for( var ind in foodSubGroup){
+	console.log(ind);
+	fsgList.push(ind);
+}
+
+
+connection.query('SELECT fsg_id, avg(unit_price_g_avg) AS price FROM price GROUP BY fsg_id HAVING fsg_id IN (' + fsgList.toString() + ");", function(err, rows) {
+	if (err){
 		throw err;
-	res.render(__dirname + "/views/stat",{
-		rows[0],
+	}
+	console.log(rows);
+	
+	res.render(__dirname + "/views/stat",
+		rows[0]
 		
-	})
+		
+	)
+
 })
 
 })

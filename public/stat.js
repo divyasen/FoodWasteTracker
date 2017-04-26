@@ -19,7 +19,7 @@
         $("#chicken-year-text").text(Math.round((data[data.length - 1].weight / BASE_DATA.chicken_weight)));
         $("#banana-year-text").text(Math.round((data[data.length - 1].weight / BASE_DATA.banana_weight)));
         $("#burger-year-text").text(Math.round((data[data.length - 1].weight / BASE_DATA.burger_weight)));
-        $("#money-text").text(d['money']);
+        $("#money-text").text(d['price']);
         $("#feed-text").text(Math.round((data[data.length - 1].weight / BASE_DATA.human_amt)));
     }
 
@@ -141,14 +141,14 @@
     }
 
     function getData() {
-        var tempdata = {
+       /* var tempdata = {
                 'day': .571,
                 'week': 4,
                 'month': 16,
                 'year': 208,
                 'money': 544
             };
-            
+         */   
         data = [
             {
                 'time': 'week',

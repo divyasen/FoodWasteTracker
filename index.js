@@ -8,7 +8,7 @@ var connection = mysql.createConnection({
   user     : 'root',
   password : 'root',
   database : 'food_waste_tracker',
-  port : '3307'
+  port : '3306'
 });
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -28,7 +28,6 @@ var fsgList = [];
 var mass = 0;
 var data = {};
 for( var ind in foodSubGroup){
-	console.log(ind);
 	fsgList.push(ind);
 }
 
@@ -37,30 +36,27 @@ connection.query('SELECT fsg_id, avg(unit_price_g_avg) AS price FROM price GROUP
 	if (err){
 		throw err;
 	}
-	console.log(rows);
-	for(var ind in fsgList){
-		mass += parseInt(ind)
+	
+	for(var ind in foodSubGroup){
+		mass += parseFloat(foodSubGroup[ind]);
 	}
 	mass *= 2.5;
-	data.day = mass;
+	data.day = Math.round(mass * .00220462);
 	mass *= 7;
-	data.week = mass;
+	data.week = Math.round(mass * .00220462);
 	mass *= 4.34524;
-	data.month = mass;
+	data.month = Math.round(mass * .00220462);
 	mass *= 12;
-	data.year = mass; 
+	data.year = Math.round(mass * .00220462); 
 	data.price = 0;
 	for(var ind in rows){
 		var temp = rows[ind]	
-		data.price += temp["fsg_id"] 
+		data.price += parseFloat(foodSubGroup[temp["fsg_id"]]) * parseFloat(temp["price"])/100;
 	
 	}
-	
-	res.render(__dirname + "/views/stat",
-		rows[0]
-		
-		
-	)
+	data.price *= 2.5 * 7 * 4.34524 * 12;
+	data.price = data.price.toFixed(2);
+	res.render(__dirname + "/views/stat",{data: data})
 
 })
 

@@ -8,7 +8,7 @@ var connection = mysql.createConnection({
   user     : 'root',
   password : 'root',
   database : 'food_waste_tracker',
-  port : '3306'
+  port : '3307'
 });
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -20,6 +20,16 @@ connection.connect();
 
 app.get('/', function (req, res) {
    res.sendFile( __dirname + "/views/index.html" );
+})
+
+
+app.get('/sources', function (req, res) {
+   res.sendFile( __dirname + "/views/sources.html" );
+})
+
+
+app.get('/about', function (req, res) {
+   res.sendFile( __dirname + "/views/about.html" );
 })
 
 app.get('/search', function(req ,res) {

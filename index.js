@@ -8,7 +8,7 @@ var connection = mysql.createConnection({
   user     : 'root',
   password : 'root',
   database : 'food_waste_tracker',
-  port : '3307'
+  port : '3306'
 });
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -78,8 +78,8 @@ app.get('/test', function(req, res) {
 
 
 
-app.listen(3000, function() {
-  console.log('listening on 3000')
+app.listen(80, function() {
+  console.log('listening on 80')
 })
 
 

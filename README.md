@@ -2,7 +2,7 @@
 
 ## Introduction
 The following instructions will help install the webserver and database on the baremetal
-to have the Food Waste Tracker running as a standalone website
+to have the Food Waste Tracker running as a standalone website.
 
 ## Installing the webserver
 1. Ensure that both node/npm and mysql are installed on the machine.
@@ -11,7 +11,7 @@ sudo apt-get install npm
 ```
 This installs both Node.js and npm.
 
-2. Change the fields "user, root, port" of the mysql configuration in the FoodWasteTracker's index.js:
+2. Change the fields `user`, `root`, `port` of the mysql configuration in the FoodWasteTracker's index.js:
 ```
 var connection = mysql.createConnection({
 host     : 'localhost',
@@ -57,11 +57,11 @@ Typical usage:
 tar -xvzf FoodWasteTracker_MySQL.tar.gz
 ```
 
-3.  Import the database and populate it by using the "db_import.sh" script:
+3.  Import the database and populate it by using one of the following commands:
 	* Through a MySQL user **requiring** a password:
-```./db_import.sh -u <USERNAME> -p <PASSWORD> ```
+```./db_import.sh -u YOUR_USERNAME> -p YOUR_PASSWORD ```
 	* Through a MySQL user **without** a password:
-```./db_import.sh -u <USERNAME>```
+```./db_import.sh -u YOUR_USERNAME```
 
 Verbose mode may also be activated with the `-v` flag
 

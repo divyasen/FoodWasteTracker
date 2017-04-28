@@ -41,7 +41,7 @@ A detailed view of the import script's usage may be displayed with the `-h` flag
 ```
 
 ## Installing the webserver
-1. Ensure that Node.js/npm is installed on the machine.
+1. Ensure that both Node.js and npm is installed on the machine.
 ```
 sudo apt-get update
 sudo apt-get install npm

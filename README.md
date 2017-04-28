@@ -58,9 +58,9 @@ tar -xvzf FoodWasteTracker_MySQL.tar.gz
 ```
 
 3.  Import the database and populate it by using the "db_import.sh" script:
-	1. Through a MySQL user **requiring** a password:
+	* Through a MySQL user **requiring** a password:
 ```./db_import.sh -u <USERNAME> -p <PASSWORD> ```
-	2. Through a MySQL user **without** a password:
+	* Through a MySQL user **without** a password:
 ```./db_import.sh -u <USERNAME>```
 
 Verbose mode may also be activated with the `-v` flag

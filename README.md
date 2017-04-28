@@ -76,13 +76,12 @@ sudo npm start&
 6. If the program takes control of the shell, hit CTRL-C in order to stop it.
 7. Now type in ```jobs```, it should show you the webserver running in the background. 
 8. It should now be running on the machine at port 80. 
-9. If it fails, make sure that:
-	* MySQL is running
+
+## In case of failure, make sure that:
+1. MySQL is running
 ```
 sudo service mysql status
 sudo service mysql stop
 sudo service mysql start
 ```
-	* The port of webserver isn't already in use
-
-
+2. The port of webserver isn't already in use

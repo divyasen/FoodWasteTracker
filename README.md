@@ -77,11 +77,11 @@ sudo npm start&
 7. Now type in ```jobs```, it should show you the webserver running in the background. 
 8. It should now be running on the machine at port 80. 
 
-## In case of failure, make sure that:
-1. MySQL is running
+## In case of failure
+1. Ensure that MySQL is running
 ```
 sudo service mysql status
 sudo service mysql stop
 sudo service mysql start
 ```
-2. The port of webserver isn't already in use
+2. Ensure that the port of webserver isn't already in use

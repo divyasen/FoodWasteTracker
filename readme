@@ -1,6 +1,28 @@
+# Food Waste Tracker
+
+## Introduction
+The following instructions will help install the webserver and database on the baremetal
+to have the Food Waste Tracker running as a standalone website
+
+## Installing the webserver
 1. Ensure that both node/npm and mysql are installed on the machine.
-2. Change the mysql configuration in index.js to the correct parameters:
-	user, root, port
+```
+sudo apt-get install npm
+```
+
+2. Change the fields "user, root, port" of the mysql configuration in the FoodWasteTracker's index.js:
+```
+vim index.js
+
+var connection = mysql.createConnection({
+host     : 'localhost',
+user     : 'YOUR_USER_NAME',
+password : 'YOUR_PASSWORD',
+database : 'food_waste_tracker',
+port : 'PORT_NUMBER_MYSQL_IS_LISTENING_ON'
+});
+```
+	
 3. Unzip the tar file, and follow the readme there to install the db.
 4. Now run "npm install" to install all the dependencies
 5. Then run "sudo npm start&" inorder to run the webserver in the backgroud

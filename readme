@@ -1,5 +1,12 @@
-step one: install npm
-step two: run npm install
-step three: run npm start
-step four: ???
-step five: profit
+1. Ensure that both node/npm and mysql are installed on the machine.
+2. Change the mysql configuration in index.js to the correct parameters:
+	user, root, port
+3. Unzip the tar file, and follow the readme there to install the db.
+4. Now run "npm install" to install all the dependencies
+5. Then run "sudo npm start&" inorder to run the webserver in the backgroud
+6. If the program takes control of the shell, hit CTRL-C in order to stop it.
+7. Now type in "jobs", it should show you the webserver running in the background. 
+8. It should now be running on the machine at port 80. 
+9. If it fails, make sure that:
+	Mysql is running
+	The port of webserver isn't already in use

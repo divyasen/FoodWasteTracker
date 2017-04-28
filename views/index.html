@@ -16,13 +16,18 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
 
+    var added={};
+
+    var added_json={};
+
+    var selected = false; 
+
+    function checkEmpty()
+    {
+        return Object.keys(added).length > 0;
+    }
+
     $( function() {
-
-        var added={};
-
-        var added_json={};
-
-        var selected = false; 
 
         $("#pic0").click(function(){
             $("#tags").val(image_map[$("#pic0").attr('src')]);
@@ -254,11 +259,25 @@
             // Do a check first off to make sure that that is a valid category
             if(selected)
             {
+                // check for numerical grams input
+                var grams = $( "#grams" ).val();
+                if(!grams || 0 === grams.length)
+                {
+                    alert("Please enter in grams");
+                    return;
+                }
+
+                if(isNaN(parseFloat(grams)) || !isFinite(grams))
+                {
+                    alert("Please enter a number for grams");
+                    return;
+                }
+
                 $("#added").text("");
                 selected = false;
-                added[$( "#tags" ).val()] = $( "#grams" ).val();
+                added[$( "#tags" ).val()] = grams;
                 var db_index = fooditems.indexOf($("#tags").val()) + 1;
-                added_json[db_index] = $( "#grams" ).val();
+                added_json[db_index] = grams;
 
                 Object.keys(added).forEach(function(key) {
                     value = added[key];
@@ -267,6 +286,9 @@
                 });
                 $("#foodGroup").val(JSON.stringify(added_json));
                 $("#foodGroup").text(JSON.stringify(added_json));
+
+                $("#grams").val("");
+                $("#tags").val("");
             }
             else
             {
@@ -274,8 +296,6 @@
             }
         });
 
-
-        // send the json via POST
         $("#submit").click(function(){
 
         });
@@ -309,7 +329,7 @@
         <br>
         <div class="row">
             <div class="col-xs-5 col-xs-offset-1">
-                <form action = "/search" method = "GET">
+                <form action = "/search" onsubmit="return checkEmpty()" method = "GET">
                     <div class="form-group">
                         <label for="tags" class="arvo">Food Group</label>
                         <input type="text" class="form-control" id="tags">
@@ -320,7 +340,7 @@
                     </div>
                     <input type="hidden" id="foodGroup" name="foodGroup" style="visibility:hidden">
                     <button class="btn btn-lg btn-default arvo" type="button" id="add">ADD FOOD</button>
-                    <button class="btn btn-lg btn-success arvo" type="submit">CALCULATE RESULTS</button>
+                    <button class="btn btn-lg btn-success arvo" type="submit" >CALCULATE RESULTS</button>
                 </form>
             </div>
             <div class="col-xs-5 foodlist">
@@ -332,17 +352,17 @@
         <div class="row">
             <div class="col-xs-10 col-xs-offset-1">
                 <div class="row">
-                    <img class="foodpics col-sm-3" id="pic0" src="http://kingofwallpapers.com/blank/blank-003.jpg">
-                    <img class="foodpics col-sm-3" id="pic1" src="http://kingofwallpapers.com/blank/blank-003.jpg"> 
-                    <img class="foodpics col-sm-3" id="pic2" src="http://kingofwallpapers.com/blank/blank-003.jpg">
-                    <img class="foodpics col-sm-3" id="pic3" src="http://kingofwallpapers.com/blank/blank-003.jpg">
+                    <a href="javascript:;"> <img class="foodpics col-sm-3" id="pic0" src="http://kingofwallpapers.com/blank/blank-003.jpg"></a>
+                    <a href="javascript:;"> <img class="foodpics col-sm-3" id="pic1" src="http://kingofwallpapers.com/blank/blank-003.jpg"> </a>
+                    <a href="javascript:;"> <img class="foodpics col-sm-3" id="pic2" src="http://kingofwallpapers.com/blank/blank-003.jpg"></a>
+                    <a href="javascript:;"> <img class="foodpics col-sm-3" id="pic3" src="http://kingofwallpapers.com/blank/blank-003.jpg"></a>
                 </div>
                 <br>
                 <div class="row">  
-                    <img class="foodpics col-sm-3" id="pic4" src="http://kingofwallpapers.com/blank/blank-003.jpg">
-                    <img class="foodpics col-sm-3" id="pic5" src="http://kingofwallpapers.com/blank/blank-003.jpg"> 
-                    <img class="foodpics col-sm-3" id="pic6" src="http://kingofwallpapers.com/blank/blank-003.jpg">
-                    <img class="foodpics col-sm-3" id="pic7" src="http://kingofwallpapers.com/blank/blank-003.jpg">
+                    <a href="javascript:;"> <img class="foodpics col-sm-3" id="pic4" src="http://kingofwallpapers.com/blank/blank-003.jpg"></a>
+                    <a href="javascript:;"> <img class="foodpics col-sm-3" id="pic5" src="http://kingofwallpapers.com/blank/blank-003.jpg"> </a>
+                    <a href="javascript:;"> <img class="foodpics col-sm-3" id="pic6" src="http://kingofwallpapers.com/blank/blank-003.jpg"></a>
+                    <a href="javascript:;"> <img class="foodpics col-sm-3" id="pic7" src="http://kingofwallpapers.com/blank/blank-003.jpg"></a>
                 </div>
             </div>
          </div>

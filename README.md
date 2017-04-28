@@ -21,21 +21,49 @@ database : 'food_waste_tracker',
 port : 'PORT_NUMBER_MYSQL_IS_LISTENING_ON'
 });
 ```
+
 3. Unzip the tar file, and follow the readme there to install the db.
 ```
 tar -xzvf FoodWasteTracker_SQL.tar.gz
 ```
+
 4. Now install all the dependencies
 ```
 npm install
 ```
+
 5. Then run the webserver in the backgroud
 ```
 sudo npm start&
 ```
+
 6. If the program takes control of the shell, hit CTRL-C in order to stop it.
-7. Now type in "jobs", it should show you the webserver running in the background. 
+7. Now type in ```jobs```, it should show you the webserver running in the background. 
 8. It should now be running on the machine at port 80. 
 9. If it fails, make sure that:
 	Mysql is running
 	The port of webserver isn't already in use
+
+## Installing the database
+Food Waste Tracker Database README
+
+Typical usage:
+
+1.  Copy this "FoodWasteTracker_MySQL.tar.gz" archive to the machine
+    hosting and running your MySQL server.
+
+2.  Extract the installation files:
+```
+tar -xvzf FoodWasteTracker_MySQL.tar.gz
+```
+
+3.  Import the database and populate it by using the "db_import.sh" script:
+	1. Through a MySQL user **requiring** a password:
+```./db_import.sh -u <USERNAME> -p <PASSWORD> ```
+	2. Through a MySQL user **without** a password:
+```./db_import.sh -u <USERNAME>```
+
+Verbose mode may also be activated with the `-v` flag
+
+A detailed view of the import script's usage may be displayed with:
+```./db_import.sh -h```

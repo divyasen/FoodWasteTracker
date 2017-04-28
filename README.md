@@ -41,14 +41,18 @@ A detailed view of the import script's usage may be displayed with the `-h` flag
 ```
 
 ## Installing the webserver
-1. Ensure that both node/npm and mysql are installed on the machine.
+1. Ensure that both Node.js and npm is installed on the machine.
 ```
 sudo apt-get update
 sudo apt-get install npm
 ```
-This installs both Node.js and npm.
 
-2. Change the fields `user`, `root`, `port` of the mysql configuration in the FoodWasteTracker's index.js:
+2. Determine the MySQL server's listening port from the configuration file's entry for `[mysqld]`.
+```
+/etc/mysql/my.cnf
+```
+
+3. Change the fields `user`, `root`, `port` of the mysql configuration in the FoodWasteTracker's index.js:
 ```
 var connection = mysql.createConnection({
 host     : 'localhost',
@@ -59,24 +63,24 @@ port : 'PORT_NUMBER_MYSQL_IS_LISTENING_ON'
 });
 ```
 
-3. Unzip the tar file, and follow the readme there to install the db.
+4. Unzip the tar file, and follow the readme there to install the db.
 ```
 tar -xzvf FoodWasteTracker_SQL.tar.gz
 ```
 
-4. Now install all the dependencies
+5. Now install all the dependencies
 ```
 npm install
 ```
 
-5. Then run the webserver in the backgroud
+6. Then run the webserver in the background
 ```
 sudo npm start&
 ```
 
-6. If the program takes control of the shell, hit CTRL-C in order to stop it.
-7. Now type in ```jobs```, it should show you the webserver running in the background. 
-8. It should now be running on the machine at port 80. 
+7. If the program takes control of the shell, hit CTRL-C in order to stop it.
+8. Now type in ```jobs```, it should show you the webserver running in the background. 
+9. It should now be running on the machine at port 80. 
 
 ## In case of failure
 1. Ensure that MySQL is running

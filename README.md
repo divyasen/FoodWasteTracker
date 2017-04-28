@@ -64,6 +64,11 @@ tar -xvzf FoodWasteTracker_MySQL.tar.gz
 ```./db_import.sh -u YOUR_USERNAME```
 
 Verbose mode may also be activated with the `-v` flag
+```
+./db_import.sh -u YOUR_USERNAME -v
+```
 
-A detailed view of the import script's usage may be displayed with:
-```./db_import.sh -h```
+A detailed view of the import script's usage may be displayed with the `-h` flag
+```
+./db_import.sh -h
+```

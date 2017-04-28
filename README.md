@@ -4,6 +4,42 @@
 The following instructions will help install the webserver and database on the baremetal
 to have the Food Waste Tracker running as a standalone website.
 
+## Installing the MySQL server
+```
+sudo apt-get update
+sudo apt-get install mysql-server
+```
+Configure the MySQL server to your likings during the installation.
+
+## Importing the database
+Food Waste Tracker Database README
+
+Typical usage:
+
+1.  Copy this "FoodWasteTracker_MySQL.tar.gz" archive to the machine
+    hosting and running your MySQL server.
+
+2.  Extract the installation files:
+```
+tar -xvzf FoodWasteTracker_MySQL.tar.gz
+```
+
+3.  Import the database and populate it by using one of the following commands:
+	* Through a MySQL user **requiring** a password:
+```./db_import.sh -u YOUR_USERNAME -p YOUR_PASSWORD ```
+	* Through a MySQL user **without** a password:
+```./db_import.sh -u YOUR_USERNAME```
+
+Verbose mode may also be activated with the `-v` flag
+```
+./db_import.sh -u YOUR_USERNAME -v
+```
+
+A detailed view of the import script's usage may be displayed with the `-h` flag
+```
+./db_import.sh -h
+```
+
 ## Installing the webserver
 1. Ensure that both node/npm and mysql are installed on the machine.
 ```
@@ -41,34 +77,12 @@ sudo npm start&
 7. Now type in ```jobs```, it should show you the webserver running in the background. 
 8. It should now be running on the machine at port 80. 
 9. If it fails, make sure that:
-	Mysql is running
-	The port of webserver isn't already in use
-
-## Installing the database
-Food Waste Tracker Database README
-
-Typical usage:
-
-1.  Copy this "FoodWasteTracker_MySQL.tar.gz" archive to the machine
-    hosting and running your MySQL server.
-
-2.  Extract the installation files:
+	* MySQL is running
 ```
-tar -xvzf FoodWasteTracker_MySQL.tar.gz
+sudo service mysql status
+sudo service mysql stop
+sudo service mysql start
 ```
+	* The port of webserver isn't already in use
 
-3.  Import the database and populate it by using one of the following commands:
-	* Through a MySQL user **requiring** a password:
-```./db_import.sh -u YOUR_USERNAME -p YOUR_PASSWORD ```
-	* Through a MySQL user **without** a password:
-```./db_import.sh -u YOUR_USERNAME```
 
-Verbose mode may also be activated with the `-v` flag
-```
-./db_import.sh -u YOUR_USERNAME -v
-```
-
-A detailed view of the import script's usage may be displayed with the `-h` flag
-```
-./db_import.sh -h
-```
